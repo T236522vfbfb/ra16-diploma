@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import { useAppDispatch, useAppSelector } from "../models/hook";
 import { MouseEvent, useEffect, useState } from "react";
 import { addCart, getItemDetail } from "../redux/StoreSlice";
+//import { saveCartToLocalStorage} from '../thunks/cartThunks';
 import Loader from "../components/Loader";
 import ErrorInfo from "../components/ErrorInfo";
 
@@ -37,7 +38,10 @@ export default function Product() {
         price: itemDetail.price,
         count: selectedCount,
       };
+
       dispatch(addCart(item));
+      //dispatch(saveCartToLocalStorage(item));
+      
       navigate("/cart");
     }
   };

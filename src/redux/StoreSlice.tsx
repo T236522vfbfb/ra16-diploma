@@ -1,4 +1,6 @@
 import { createAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { saveCartToLocalStorage } from '../thunks/cartThunks'; 
+
 import {
   DataItem,
   Category,
@@ -166,6 +168,7 @@ const StoreSlice = createSlice({
         action.payload.count += count;
       }
       state.cart.push(action.payload);
+
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     delCart(state, action: PayloadAction<CartItemModel>) {
@@ -189,6 +192,15 @@ const StoreSlice = createSlice({
       }
     },
   },
+
+  extraReducers: (builder) => {
+    builder
+      // .addCase(saveCartToLocalStorage.fulfilled, (state) => {
+
+      // });
+      .addCase(saveCartToLocalStorage.fulfilled, () => {});
+  },
+
 });
 
 export const GET_TOP_SALES = "store/getTopSales";
